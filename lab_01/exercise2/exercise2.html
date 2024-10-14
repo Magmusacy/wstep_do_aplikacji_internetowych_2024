@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista zakupów</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        background-color: rgb(144, 27, 160);
+        color: white;
+        font-size: 1.5em;
+        padding: 0.5rem;
+      }
+
+      td {
+        border: 1px solid rgb(144, 27, 160);
+        padding: 0.5rem;
+      }
+
+      tr:nth-child(even) {
+        background-color: rgb(144, 27, 160, 0.1);
+      }
+
+      tr:nth-child(odd) {
+        background-color: rgb(144, 27, 160, 0.2);
+      }
+
+      .main-navbar {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="main-navbar">
+      <a href="../index.html">[main page]</a>
+    </nav>
+
+    <table>
+      <tr>
+        <th>Nr</th>
+        <th>Nazwa produktu</th>
+        <th>Ilość sztuk</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>Chleb</td>
+        <td>2</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>Mleko</td>
+        <td>1</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>Jajka</td>
+        <td>10</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>Masło</td>
+        <td>1</td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td>Ser</td>
+        <td>1</td>
+      </tr>
+    </table>
+  </body>
+</html>
