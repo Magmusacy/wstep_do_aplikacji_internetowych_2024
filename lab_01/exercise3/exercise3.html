@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .main-navbar {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1.5em;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+      }
+
+      .box-1 {
+        background-color: rgb(144, 27, 160);
+      }
+
+      .box-2 {
+        background-color: rgb(144, 27, 160, 0.5);
+      }
+
+      .box-3 {
+        background-color: rgb(141, 133, 17);
+      }
+
+      .box-4 {
+        background-color: rgb(74, 180, 12);
+      }
+
+      .box-5 {
+        background-color: rgb(255, 15, 7);
+      }
+
+      .first-row {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2em;
+      }
+
+      .second-row {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2em;
+      }
+
+      img[src="angry-dog.jpg"] {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="main-navbar">
+      <a href="../index.html">[main page]</a>
+    </nav>
+
+    <div class="first-row">
+      <div class="box box-1"></div>
+      <div class="box box-2"></div>
+    </div>
+
+    <div class="second-row">
+      <div class="box box-3"></div>
+      <div class="box box-4"></div>
+      <div class="box box-5">
+        <img src="angry-dog.jpg" alt="angry dog" />
+      </div>
+    </div>
+  </body>
+</html>

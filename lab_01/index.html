@@ -3,19 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Strona główna</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .first-li,
+      .first-li a {
+        color: red;
+      }
+
+      .second-li,
+      .second-li a {
+        color: green;
+      }
+
+      .third-li,
+      .third-li a {
+        color: blue;
+      }
+    </style>
   </head>
   <body>
     <h1>Wykonane ćwiczenia</h1>
     <ol>
-      <li>
-        <a href="exercise1/exercise1.html" style="color: rgb(144, 27, 160)"
-          >Zadanie 1</a
-        >
+      <li class="first-li">
+        <a href="exercise1/exercise1.html">Zadanie 1</a>
       </li>
 
-      <li>
+      <li class="second-li">
         <a href="exercise2/exercise2.html">Zadanie 2</a>
+      </li>
+
+      <li class="third-li">
+        <a href="exercise3/exercise3.html">Zadanie 3</a>
       </li>
     </ol>
   </body>
