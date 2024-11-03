@@ -116,7 +116,6 @@ header img {
 }
 
 .articles {
-  border: 1px solid black;
   height: auto;
   display: grid;  
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -167,12 +166,18 @@ header img {
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
-  background-color: yellow;
+  background-color: rgba(255, 6, 0, 0.7);
+  border-radius: 15px;
   gap: var(--article-gap);
 }
 
-.articles article .article-footer:hover {
+.articles article:hover {
+  background-color: rgba(255, 6, 0, 1);
   cursor: pointer;
+}
+
+.articles article:hover img {
+  transform: scale(1.2);
 }
 
 .article-body {
@@ -188,11 +193,18 @@ header img {
   gap: var(--article-gap);
 }
 
+.article-header .image-container,
 .article-header img {
-  display: block;
-  object-fit: cover;
   width: 100%;
   height: 200px;
+}
+
+.article-header img {
+  object-fit: cover;
+}
+
+.article-header .image-container {
+  overflow: hidden;
 }
 
 .modal {
@@ -215,15 +227,173 @@ header img {
 }
 
 .modal-content {
+  position: relative;
   height: 80%;
   width: 80%;
   background-color: white;
   padding: 1rem;
+  border-radius: 4px;
+  overflow-y: scroll;
+  gap: var(--article-gap);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.modal-article-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--article-gap);
+  width: 100%;
+}
+
+.modal-article-header img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
   border-radius: 5px;
 }
 
-.close-button {
-  height: 30px;
-  width: 30px;
+.close-button button {
+  height: 50px;
+  width: 50px;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.15s ease;
+  font-size: 20px;
+}
+
+.close-button button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.close-button button:active {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.comments-section {
+  width: 80%; 
+  margin: 20px auto;
+}
+
+.comments-heading {
+  color: #000;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+/* wszedzie uzywam tego article gap nwm czy to najlepszy pomysł */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-gap);
+  margin-bottom: 30px;
+}
+
+.comment-email {
+  width: 100%;
+  padding: 10px 12px;
+  background:  rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.comment-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  background:  rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.comment-email:focus,
+.comment-textarea:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.comment-button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.1);
+  border:none;
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.comment-button:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.comment-button:active {
+  transform: translateY(0);
+  opacity: 0.8;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.comments-heading {
+  color: #000;
+  font-size: 16px;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.comments-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.comment-header {
+  margin-bottom: 8px;
+}
+
+.comment-email-display {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.comment-text {
+  color: rgba(0, 0, 0, 0.9);
+  line-height: 1.5;
 }

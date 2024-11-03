@@ -31,9 +31,9 @@ menuButton.addEventListener("click", () => {
 articles.forEach((article) => {
   console.log(article)
   const readMoreButton = article.querySelector(".article-footer");
-  readMoreButton.addEventListener('click', () => {
+  article.addEventListener('click', () => { 
     const articleModal = document.querySelector(`#modal-${article.id}`);
-    const closeModalButton = articleModal.querySelector("button.close-button");
+    const closeModalButton = articleModal.querySelector(".close-button button");
     let isModalOpen = articleModal.dataset.modalOpen === "true";
     if (isModalOpen) {
       articleModal.dataset.modalOpen = "false";
