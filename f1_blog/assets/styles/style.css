@@ -14,6 +14,7 @@ body {
   --primary-color: rgb(255, 6, 0);
   --secondary-color: rgb(37, 31, 30);
   --header-height: 70px;
+  --article-gap: 10px;
 }
 
 header {
@@ -24,6 +25,7 @@ header {
   justify-content: center;
   padding: 1.2rem;
   height: var(--header-height);
+  width:100%;
 }
 
 header img {
@@ -106,18 +108,54 @@ header img {
   transition: background-color 0.5s;
 }
 
-section.blog {
+.blog {
   padding: 0 .5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .articles {
   border: 1px solid black;
   height: auto;
   display: grid;  
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: 400px;
   grid-gap: 20px;
+  width: 1600px;
+  margin: auto;
+}
 
+@media screen and (max-width: 1600px) {
+  .articles {
+    width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .articles {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .articles {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .articles {
+    grid-template-columns: 350px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .articles {
+    grid-template-columns: 300px;
+    width: auto;
+  }
 }
 
 .blog h2 {
@@ -130,10 +168,31 @@ section.blog {
   justify-content: space-between;
   padding: 1rem;
   background-color: yellow;
+  gap: var(--article-gap);
 }
 
 .articles article .article-footer:hover {
   cursor: pointer;
+}
+
+.article-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  flex:1;
+}
+
+.article-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--article-gap);
+}
+
+.article-header img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
 }
 
 .modal {
@@ -161,4 +220,10 @@ section.blog {
   background-color: white;
   padding: 1rem;
   border-radius: 5px;
+}
+
+.close-button {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 }
