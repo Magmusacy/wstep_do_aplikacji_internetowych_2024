@@ -10,6 +10,7 @@ body {
   flex-direction: column;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
+  color: white;
 }
 
 :root {
@@ -20,6 +21,9 @@ body {
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
@@ -46,11 +50,18 @@ header img {
   top: 0;
   left: -100%;
   width: 300px;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   background-color: var(--primary-color);
   padding: 1rem;
   z-index: 1;
   transition: left 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signature {
+  text-align: center;
 }
 
 .show-menu {
@@ -124,7 +135,6 @@ ul .active-site a {
 }
 
 .blog {
-  padding: 0 .5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -223,6 +233,7 @@ ul .active-site a {
 }
 
 .modal {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
@@ -231,6 +242,7 @@ ul .active-site a {
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
+  color: black;
 }
 
 .hide-modal {
@@ -466,4 +478,23 @@ ul .active-site a {
 
 .menu-button:hover {
   transform: scale(1.1);
+}
+
+.about {
+  color: black;
+}
+
+main {
+  padding: 20px;
+  flex: 1;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  width: 100%;
+  background: var(--primary-color);
+  height: 40px;
 }
