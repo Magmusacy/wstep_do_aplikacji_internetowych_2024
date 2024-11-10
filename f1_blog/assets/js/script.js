@@ -8,11 +8,11 @@ menuButton.addEventListener("click", () => {
   menu.classList.toggle("show-menu");
   overlay.classList.toggle("show-overlay");
   body.classList.toggle("no-scroll");
-  menuButton.classList.toggle('open');
+  menuButton.classList.toggle("open");
 });
 
 articles.forEach((article) => {
-  article.addEventListener('click', () => handleArticleClick(article));
+  article.addEventListener("click", () => handleArticleClick(article));
 });
 
 function handleArticleClick(article) {
@@ -20,7 +20,7 @@ function handleArticleClick(article) {
   const modalContainer = openModal(data);
   const closeModalButton = modalContainer.querySelector(".close-button button");
   body.classList.toggle("no-scroll");
-  closeModalButton.addEventListener('click', handleCloseModal);
+  closeModalButton.addEventListener("click", handleCloseModal);
 }
 
 function handleCloseModal() {
@@ -36,7 +36,7 @@ function gatherModalData(article) {
     altText: image.alt,
     h3Tag: article.querySelector("h3").textContent,
     authorDate: article.querySelector(".author").textContent,
-    paragraph: article.querySelector(".article-body p").textContent
+    paragraph: article.querySelector(".article-body p").textContent,
   };
 }
 

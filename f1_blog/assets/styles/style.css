@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +11,9 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", serif;
   color: white;
+  background-color: #ffffff;
 }
 
 :root {
@@ -23,7 +26,7 @@ body {
 header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
@@ -31,7 +34,7 @@ header {
   justify-content: center;
   padding: 1.2rem;
   height: var(--header-height);
-  width:100%;
+  width: 100%;
 }
 
 header img {
@@ -53,7 +56,7 @@ header img {
   height: calc(100vh - var(--header-height));
   background-color: var(--primary-color);
   padding: 1rem;
-  z-index: 1;
+  z-index: 10;
   transition: left 0.4s;
   display: flex;
   flex-direction: column;
@@ -86,25 +89,26 @@ header img {
   list-style: none;
   width: 100%;
   text-align: center;
-  background: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   transition: all 0.3s ease;
 }
 
 .menu li:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .menu li:hover {
   transform: scale(1.02);
 }
 
-ul .active-site {
-  background-color: rgba(0, 0, 0, 0.6);
+.menu li:active {
+  transform: scale(1.01);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-ul .active-site a {
-  text-decoration: underline;
+ul .active-site {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .menu a {
@@ -119,6 +123,7 @@ ul .active-site a {
 
 .overlay {
   background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(3px);
   display: none;
   margin-top: var(--header-height);
   position: fixed;
@@ -127,6 +132,7 @@ ul .active-site a {
   top: 0;
   bottom: 0;
   transition: background-color 0.3s;
+  z-index: 2;
 }
 
 .show-overlay {
@@ -150,7 +156,7 @@ ul .active-site a {
 
 .articles {
   height: auto;
-  display: grid;  
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: 400px;
   grid-gap: 20px;
@@ -168,11 +174,24 @@ ul .active-site a {
   .articles {
     width: 800px;
   }
+
+  .modal-content .modal-article-header img {
+    height: 300px;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .articles {
     width: 450px;
+  }
+
+  .modal-content .modal-article-header img {
+    height: 200px;
+  }
+
+  main.about-page {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -181,12 +200,20 @@ ul .active-site a {
     grid-template-columns: 350px;
     width: auto;
   }
+
+  .modal-content .modal-article-header img {
+    height: 150px;
+  }
 }
 
 @media screen and (max-width: 370px) {
   .articles {
     grid-template-columns: 300px;
     width: auto;
+  }
+
+  .modal-content .modal-article-header img {
+    height: 100px;
   }
 }
 
@@ -217,7 +244,7 @@ ul .active-site a {
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  flex:1;
+  flex: 1;
 }
 
 .article-body p {
@@ -249,6 +276,7 @@ ul .active-site a {
 
 .article-header .image-container {
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .article-footer a {
@@ -261,8 +289,9 @@ ul .active-site a {
 }
 
 .modal {
-  z-index: 2;
+  z-index: 11;
   position: fixed;
+  backdrop-filter: blur(3px);
   top: 0;
   left: 0;
   right: 0;
@@ -295,16 +324,16 @@ ul .active-site a {
 }
 
 .modal-content::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 60px;
   background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0) 100%
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -347,7 +376,7 @@ ul .active-site a {
 }
 
 .comments-section {
-  width: 80%; 
+  width: 80%;
   margin: 20px auto;
 }
 
@@ -368,7 +397,7 @@ ul .active-site a {
 .comment-email {
   width: 100%;
   padding: 10px 12px;
-  background:  rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   color: #000;
@@ -379,7 +408,7 @@ ul .active-site a {
   width: 100%;
   min-height: 100px;
   padding: 12px;
-  background:  rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   color: #000;
@@ -397,7 +426,7 @@ ul .active-site a {
   align-self: flex-start;
   padding: 8px 16px;
   background: rgba(0, 0, 0, 0.1);
-  border:none;
+  border: none;
   border-radius: 4px;
   color: #000;
   cursor: pointer;
@@ -525,4 +554,152 @@ footer {
   width: 100%;
   background: var(--primary-color);
   height: 40px;
+}
+
+main.about-page {
+  color: black;
+  display: flex;
+}
+
+section.about-information {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.about-image-container img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+section.contact {
+  width: 50%;
+}
+
+.agh {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.green {
+  color: #007a33;
+}
+.red {
+  color: #e2231a;
+}
+.black {
+  color: #000000;
+}
+
+.form-container {
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s;
+  color: #334155;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+select {
+  cursor: pointer;
+  color: #334155;
+}
+
+select option {
+  color: #334155;
+}
+
+textarea {
+  height: 140px;
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-button:hover {
+  transform: scale(1.02);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 10px;
+}
+
+.social-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+.social-circle.x {
+  background-color: #000000;
+}
+
+.social-circle.github {
+  background-color: #333;
+}
+
+.social-circle.facebook {
+  background-color: #1877f2;
+}
+
+.social-circle:hover {
+  transform: translateY(-4px);
 }
