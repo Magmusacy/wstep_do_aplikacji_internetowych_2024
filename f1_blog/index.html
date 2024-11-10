@@ -10,22 +10,23 @@
   <body>
     <header>
       <button class="menu-button">
-        <img src="assets/img/menu_open.svg" alt="Menu" />
+        <div class="menu-button-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>
       <img src="assets/img/f1_logo.svg" alt="Logo F1" />
 
       <!-- Menu -->
-      <div class="menu hide-menu" data-menu-open="false">
+      <div class="menu" data-menu-open="false">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Drivers</a></li>
-          <li><a href="#">Teams</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Standings</a></li>
+          <li class="active-site"><a href="#">Blog</a></li>
+          <li><a href="#">About</a></li>
         </ul>
       </div>
     </header>
-    <div class="overlay hide-overlay"></div>
+    <div class="overlay"></div>
     <!-- Blog/Articles -->
     <section class="blog">
       <h2>Latest News</h2>

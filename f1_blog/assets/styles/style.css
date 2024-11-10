@@ -5,9 +5,11 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -34,30 +36,25 @@ header img {
   align-self: center;
 }
 
-.menu-button {
-  /* wystlizuj */
-  height: 30px;
-  width: 30px;
-}
-
-.hide-menu {
-  left: -100%;
-}
-
-.show-menu {
-  left: 0;
+.no-scroll {
+  overflow: hidden;
 }
 
 .menu {
   margin-top: var(--header-height);
   position: fixed;
   top: 0;
+  left: -100%;
   width: 300px;
   height: 100vh;
   background-color: var(--primary-color);
   padding: 1rem;
   z-index: 1;
-  transition: left 0.5s;
+  transition: left 0.4s;
+}
+
+.show-menu {
+  left: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -78,34 +75,52 @@ header img {
   list-style: none;
   width: 100%;
   text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.menu li:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.menu li:hover {
+  transform: scale(1.02);
+}
+
+ul .active-site {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+ul .active-site a {
+  text-decoration: underline;
 }
 
 .menu a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: left;
   padding: 1.2rem;
   display: block;
-  border: 1px black solid;
   border-radius: 5px;
 }
 
-.show-overlay {
-  background-color: rgba(0, 0, 0, 0.8);
-  display: block;
-}
-
-.hide-overlay {
+.overlay {
   background-color: rgba(0, 0, 0, 0);
   display: none;
-}
-
-.overlay {
   margin-top: var(--header-height);
-  /* background-color: rgba(0, 0, 0, 0.4); */
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
   bottom: 0;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
+}
+
+.show-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: block;
 }
 
 .blog {
@@ -213,7 +228,7 @@ header img {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
 }
@@ -303,7 +318,6 @@ header img {
   opacity: 0.8;
 }
 
-/* wszedzie uzywam tego article gap nwm czy to najlepszy pomysł */
 .comment-form {
   display: flex;
   flex-direction: column;
@@ -396,4 +410,60 @@ header img {
 .comment-text {
   color: rgba(0, 0, 0, 0.9);
   line-height: 1.5;
+}
+
+.menu-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.menu-button-lines {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-button-lines span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.menu-button.open .menu-button-lines span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.menu-button.open .menu-button-lines span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.menu-button.open .menu-button-lines span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Efekt hover */
+.menu-button:hover .menu-button-lines span {
+  background: #dedede;
+}
+
+.menu-button:hover {
+  transform: scale(1.1);
 }
