@@ -1,60 +1,43 @@
+const body = document.querySelector("body");
 const menuButton = document.querySelector(".menu-button");
 const menu = document.querySelector(".menu");
 const overlay = document.querySelector(".overlay");
 const articles = document.querySelectorAll(".blog article");
 
 menuButton.addEventListener("click", () => {
-  let isMenuOpen = menu.dataset.menuOpen === "true";
-
-  if (isMenuOpen) {
-    menu.dataset.menuOpen = "false";
-    menu.classList.add("hide-menu");
-    menu.classList.remove("show-menu");
-    overlay.classList.remove("show-overlay");
-    overlay.classList.add("hide-overlay");
-
-    // tu pomysl jak to zrobic no bo niby spoko ale
-    // jednak mamy tutaj problem ze jak zmienimy cos w js to msuiy w css
-    setTimeout(() => {
-      overlay.classList.add("hide-overlay");
-    }, 500);
-  } else {
-    menu.dataset.menuOpen = "true";
-    menu.classList.remove("hide-menu");
-    menu.classList.add("show-menu");
-    overlay.classList.add("show-overlay");
-    overlay.classList.remove("hide-overlay");
-  }
+  menu.classList.toggle("show-menu");
+  overlay.classList.toggle("show-overlay");
+  body.classList.toggle("no-scroll");
+  menuButton.classList.toggle('open');
 });
 
-// This will have to be refactored.
 articles.forEach((article) => {
-  // const readMoreButton = article.querySelector(".article-footer");
-  article.addEventListener('click', () => {
-    // const articleModal = document.querySelector(`#modal-${article.id}`);
-    const data = gatherModalData(article);
-    const modalContainer = openModal(data);
-    const closeModalButton = modalContainer.querySelector(".close-button button");
-    closeModalButton.addEventListener('click', () => {
-      modalContainer.innerHTML = "";
-      // articleModal.dataset.modalOpen = "false";
-      // articleModal.classList.add("hide-modal");
-      // articleModal.classList.remove("show-modal");
-      isModalOpen = false;
-    });
-  })
+  article.addEventListener('click', () => handleArticleClick(article));
 });
+
+function handleArticleClick(article) {
+  const data = gatherModalData(article);
+  const modalContainer = openModal(data);
+  const closeModalButton = modalContainer.querySelector(".close-button button");
+  body.classList.toggle("no-scroll");
+  closeModalButton.addEventListener('click', handleCloseModal);
+}
+
+function handleCloseModal() {
+  body.classList.toggle("no-scroll");
+  document.querySelector(".modal-container").innerHTML = "";
+}
 
 function gatherModalData(article) {
-  data = {
+  const image = article.querySelector("img");
+  return {
     modalId: `modal-${article.id}`,
-    image: article.querySelector("img").src,
-    altText: article.querySelector("img").alt,
+    image: image.src,
+    altText: image.alt,
     h3Tag: article.querySelector("h3").textContent,
     authorDate: article.querySelector(".author").textContent,
     paragraph: article.querySelector(".article-body p").textContent
   };
-  return data;
 }
 
 // Add dynamic comments for this
