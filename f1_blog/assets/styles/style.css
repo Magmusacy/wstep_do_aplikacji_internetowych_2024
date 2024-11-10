@@ -193,6 +193,19 @@ ul .active-site {
     flex-direction: column;
     align-items: center;
   }
+
+  .about-page .about-information {
+    width: 100%;
+  }
+
+  .about-page .contact {
+    width: 100%;
+  }
+
+  .modal-container .modal-content {
+    width: 90%;
+    height: 90%;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -203,6 +216,11 @@ ul .active-site {
 
   .modal-content .modal-article-header img {
     height: 150px;
+  }
+
+  .modal-container .modal-content {
+    width: 100%;
+    height: 100%;
   }
 }
 
