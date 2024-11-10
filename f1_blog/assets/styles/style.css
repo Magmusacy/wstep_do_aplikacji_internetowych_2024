@@ -140,6 +140,14 @@ ul .active-site a {
   flex-direction: column;
 }
 
+.blog h2 {
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
 .articles {
   height: auto;
   display: grid;  
@@ -191,18 +199,18 @@ ul .active-site a {
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
-  background-color: rgba(255, 6, 0, 0.7);
+  background-color: rgba(255, 6, 0, 1);
   border-radius: 15px;
   gap: var(--article-gap);
+  transition: all 0.3s ease;
 }
 
 .articles article:hover {
-  background-color: rgba(255, 6, 0, 1);
   cursor: pointer;
 }
 
 .articles article:hover img {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .article-body {
@@ -210,6 +218,16 @@ ul .active-site a {
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   flex:1;
+}
+
+.article-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
 
 .article-header {
@@ -225,11 +243,21 @@ ul .active-site a {
 }
 
 .article-header img {
+  transition: all 0.3s ease;
   object-fit: cover;
 }
 
 .article-header .image-container {
   overflow: hidden;
+}
+
+.article-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.articles article:hover .article-footer a {
+  text-decoration: underline;
 }
 
 .modal {
