@@ -546,7 +546,6 @@ ul .active-site {
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-/* Efekt hover */
 .menu-button:hover .menu-button-lines span {
   background: #dedede;
 }
