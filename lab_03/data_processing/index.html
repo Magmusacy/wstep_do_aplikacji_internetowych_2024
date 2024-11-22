@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dane</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="controls">
+        <input
+          name="filter-phrase"
+          type="text"
+          id="filter-phrase"
+          placeholder="Filtruj produkty..."
+        />
+        <label for="sort-data">Wybierz opcję sortowania:</label>
+        <select name="sort-data" id="sort-data">
+          <option value="original" selected>Oryginalna kolejność</option>
+          <option value="asc">Rosnąco</option>
+          <option value="desc">Malejąco</option>
+        </select>
+      </div>
+      <table id="product-table">
+        <thead>
+          <tr>
+            <th>Tytuł</th>
+            <th>Opis</th>
+            <th>Zdjęcie</th>
+          </tr>
+        </thead>
+        <tbody id="product-table-body"></tbody>
+      </table>
+    </main>
+  </body>
+</html>

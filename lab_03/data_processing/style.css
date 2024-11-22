@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI";
+  background-color: #fcdec0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.controls input[type="text"],
+.controls select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.controls input[type="text"]:focus,
+.controls select:focus {
+  outline: none;
+  border-color: black;
+}
+
+main {
+  background: #e5b299;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #7d5a50;
+}
+
+th {
+  background-color: #b4846c;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:hover {
+  background-color: #b4846c;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+@media (min-width: 600px) {
+  .controls {
+    flex-direction: row;
+  }
+
+  main {
+    width: 80%;
+    max-width: 800px;
+  }
+
+  .controls input[type="text"],
+  .controls select {
+    width: auto;
+  }
+}
