@@ -1,60 +1,38 @@
 const express = require('express')
+const { Book } = require('./db_setup.js');
 const app = express()
 const port = 3000
-const sqlite3 = require('sqlite3').verbose();
-let sql;
 
 app.use(express.json());
 
-const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the database.');
-});
-
 // Get all books
-app.get('/api/books', (req, res) => {
-  sql = `SELECT * FROM books`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      throw err;
-    }
-    res.status(200).send(rows);
-  });
+app.get('/api/books', async (req, res) => {
+  const books = await Book.findAll();
+  res.status(200).send(books);
 })
 
 // Get specific book
-app.get('/api/books/:id', (req, res) => {
-  sql = `SELECT * FROM books WHERE id = ?`;
-  db.all(sql, [req.params.id], (err, row) => {
-    if (err) {
-      throw err;
-    }
-    res.status(200).send(row);
-  });
+app.get('/api/books/:id', async (req, res) => {
+  const book = await Book.findAll({where: {id: req.params.id}});
+  res.status(200).send(book);
 })
 
 // Add book
-app.post('/api/books', (req, res) => {
-  sql = `INSERT INTO books (title, author, year) VALUES(?, ?, ?)`;
-  db.run(sql, [req.body.title, req.body.author, req.body.year], function (err) {
-    if (err) {
-      throw err;
-    }
-    res.status(201).send({ id: this.lastID });
+app.post('/api/books', async (req, res) => {
+  const newBook = await Book.create({
+    title: req.body.title,
+    author: req.body.author,
+    year: req.body.year  
   });
+
+  res.status(201).send({ id: newBook.id });
 })
 
 // Remove specific book
-app.delete('/api/books/:id', (req, res) => {
-  sql = `DELETE FROM books WHERE id = ?`;
-  db.run(sql, [req.params.id], function (err) {
-    if (err) {
-      throw err;
-    }
-    res.status(204).send({ id: req.params.id });
-  });
+app.delete('/api/books/:id', async (req, res) => {
+  const removeBook = await Book.findByPk(req.params.id);
+  await removeBook.destroy();
+  res.status(200).send({ id: req.params.id });
 })
 
 app.listen(port, () => {

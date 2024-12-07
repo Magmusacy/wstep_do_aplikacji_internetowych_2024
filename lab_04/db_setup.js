@@ -1,23 +1,82 @@
-const sqlite3 = require('sqlite3').verbose();
-let sql;
+const { Sequelize, DataTypes } = require('sequelize');
 
-const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the database.');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: './database.db'
 });
 
+async function checkConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
 
-// CREATE TABLE
-sql = `CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, year INTEGER)`;
-db.run(sql);
+checkConnection();
 
-sql = `INSERT INTO books (title, author, year) VALUES(?, ?, ?)`;
-db.run(sql, ['Harry Potter and the philosopher\'s stone', 'J.K Rowling', 1997]);
-db.run(sql, ['Lalka', 'Bolesław Prus', 1890]);
-db.run(sql, ['Zbrodnia i kara', 'Fryderyk Nietchsze', 1866]);
+const Book = sequelize.define(
+  'Book',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    title: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    author: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+  }, {
+    timestamps: false
+  });
 
-// DROP TABLE
-// sql = `DROP TABLE IF EXISTS books`;
-// db.run(sql);
+async function sync() {
+  try {
+    await Book.sync({ force: true });
+    console.log('Table created successfully');
+  } catch (error) {
+    console.error('Unable to create table:', error);
+  }
+}
+
+async function defaultPopulate() {
+  await Book.create({
+    title: 'Harry Potter and the philosopher\'s stone',
+    author: 'J.K Rowling',
+    year: 1997
+  });
+
+  await Book.create({
+    title: 'Lalka',
+    author: 'Bolesław Prus',
+    year: 1890
+  });
+
+  await Book.create({
+    title: 'Zbrodnia i kara',
+    author: 'Fryderyk Nietchsze',
+    year: 1866  
+  });
+
+  console.log("Default data populated");
+}
+
+async function initializeDatabase() {
+  await checkConnection();
+  await sync();
+  await defaultPopulate();
+}
+
+initializeDatabase().catch(console.error);
+
+module.exports = { Book, sequelize };
