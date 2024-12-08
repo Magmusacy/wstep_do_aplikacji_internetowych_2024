@@ -1,5 +1,5 @@
 const express = require('express')
-const { Book } = require('./db_setup.js');
+const Book = require('./bookModel.js');
 const jwt = require('jsonwebtoken');
 const app = express()
 const port = 3000
@@ -25,16 +25,6 @@ function verifyToken(req, res, next) {
     return res.status(403).send('Nieprawidłowy token');
   }
 }
-
-// Login
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === 'admin' && password === 'admin') {
-    const token = jwt.sign({ username: username }, NOT_SO_SECRET_SECRET_KEY);
-    res.status(200).send({ token });
-  }
-  res.status(401).send('Nieprawidłowe dane');
-})
 
 // Get all books
 app.get('/api/books', async (req, res) => {
@@ -75,5 +65,5 @@ app.delete('/api/books/:id', verifyToken, async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Library service listening on port ${port}`)
 })
