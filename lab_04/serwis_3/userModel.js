@@ -1,5 +1,9 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('./db');
+const { Sequelize, DataTypes } = require('sequelize');
+
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: './service3.db'
+});
 
 const User = sequelize.define('User', {
   id: {
@@ -22,5 +26,16 @@ const User = sequelize.define('User', {
 }, {
   timestamps: false
 });
+
+async function sync() {
+  try {
+    await sequelize.sync({ force: true });
+    console.log('Tables created successfully');
+  } catch (error) {
+    console.error('Unable to create tables:', error);
+  }
+}
+
+sync();
 
 module.exports = User;

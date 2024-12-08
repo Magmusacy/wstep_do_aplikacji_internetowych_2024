@@ -1,0 +1,1 @@
+Żeby tego mikroserwisu sensownie uzywac to trzeba odpalic w kazdym katalogu ```node ./app.js```, jesli chcemy defaultowe książki to można też użyć w mikroserwisie 1 ```node ./defaultBookPopulate.js```
