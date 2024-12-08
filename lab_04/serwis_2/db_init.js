@@ -1,4 +1,4 @@
-const { sequelize } = require('./db');
+const { sequelize, checkConnection } = require('./db');
 const Order = require('./orderModel');
 
 async function sync() {
