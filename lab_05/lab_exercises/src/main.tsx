@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import Logowanie from './components/formularze/Logowanie'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import Aktualizacja from "./components/inne/Aktualizacja";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Logowanie />
-  </StrictMode>,
-)
+    <Aktualizacja />
+  </StrictMode>
+);
